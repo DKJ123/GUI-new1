@@ -288,6 +288,7 @@ public class AppComponents extends App {
 
     public void setEndDateColumn(TableColumn endDateColumn) {
         this.endDateColumn = endDateColumn;
+        // jdjd
     }
 
     public TableColumn getStartTimeColumn() {
