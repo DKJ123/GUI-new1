@@ -6,11 +6,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 public class WebhookManager {
 
     String requestType;
@@ -144,27 +146,30 @@ public class WebhookManager {
     }
 
 
-    public static CalendarEntry[] jsonToCalendarEntryList(String jsonContent) {
+    public static ObservableList<CalendarEntry> jsonToCalendarEntryList(String jsonContent) {
+        ObservableList<CalendarEntry> calendarEntries = FXCollections.observableArrayList();
         try {
             JSONObject jsonObject = new JSONObject(jsonContent);
             JSONObject info = (JSONObject) jsonObject.get("info");
             int reservationCount = Integer.parseInt(info.get("reservationcount").toString());
-            CalendarEntry[] calendarEntries = new CalendarEntry[reservationCount];
             JSONArray reservations = (JSONArray) jsonObject.get("reservations");
-            System.out.println(reservations);
 
+            // <Print shit för test>
+            System.out.println(reservations);
             System.out.println(1);
             System.out.println(reservations);
             System.out.println(2);
-
             for(int i=0; i <reservations.length(); i++) {
                 System.out.println(reservations.get(i));
             }
             System.out.println(3);
+            // </Print shit för test>
+
             for(int i=0; i <reservations.length(); i++) {
                 System.out.println(reservations.get(i));
                 CalendarEntry calendarEntry = new CalendarEntry((JSONObject)reservations.get(i));
                 calendarEntry.printObject();
+                calendarEntries.add(calendarEntry);
                 System.out.println();
                 System.out.println();
                 System.out.println();
@@ -176,7 +181,7 @@ public class WebhookManager {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return calendarEntries;
     }
 
 }

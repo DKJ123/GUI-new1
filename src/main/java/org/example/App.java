@@ -54,7 +54,6 @@ public class App extends Application {
         init.getGetScheduleButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                ObservableList<ScheduleData> data = populateTable();
                 String getCanvasRes = null;
                 String postCanvasRes = null;
                 String getTimeEditRes = null; //Ska populeras in i tabellen vid. getCanvas/postCanvas lämnas kvar som "dokumentation" på hur de används.
@@ -75,6 +74,7 @@ public class App extends Application {
                 System.out.println(webhookManager.jsonToCalendarEntryList(getTimeEditRes));
                 System.out.println();
 
+                ObservableList<CalendarEntry> data = webhookManager.jsonToCalendarEntryList(getTimeEditRes);
                 init.getTable().setItems(data);
             }
         });

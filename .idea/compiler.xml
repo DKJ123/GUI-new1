@@ -9,6 +9,7 @@
         <module name="GUI" />
         <module name="GUI-master" />
         <module name="testGUI" />
+        <module name="GUI-new1" />
       </profile>
     </annotationProcessing>
   </component>
