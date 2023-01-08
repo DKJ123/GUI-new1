@@ -87,26 +87,21 @@ public class App extends Application {
                     //System.out.println(ce.toString());
                     //System.out.println();
                     try {
-                        System.out.println(ce.toJson().toString());
-                        //webhookManager.postCanvas((ce.toJson().toString()));
+                        //System.out.println(ce.toJson().toString());
+                        webhookManager.postCanvas((ce.toJson().toString()));
                     } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 }
-                try {
-                    webhookManager.postCanvas(schedule.get(0).toJson().toString());
-                    Stage dialog = new Stage();
-                    dialog.initModality(Modality.APPLICATION_MODAL);
-                    VBox dialogBox = new VBox(20);
-                    dialogBox.getChildren().add(new Text("Schema skapat i canvas"));
-                    Scene dialogScene = new Scene(dialogBox, 300, 200);
-                    dialog.setScene(dialogScene);
-                    dialog.show();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
+                Stage dialog = new Stage();
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                VBox dialogBox = new VBox(20);
+                dialogBox.getChildren().add(new Text("Schema skapat i canvas"));
+                Scene dialogScene = new Scene(dialogBox, 300, 200);
+                dialog.setScene(dialogScene);
+                dialog.show();
             }
         });
 
