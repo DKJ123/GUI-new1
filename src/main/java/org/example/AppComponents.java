@@ -1,6 +1,5 @@
 package org.example;
 
-import Schedule.AnchorPaneNode;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,13 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class AppComponents extends App {
 
@@ -27,12 +23,29 @@ public class AppComponents extends App {
     Button setScheduleButton;
 
     //-- Textfields --
-    TextField commentTextField;
-    TextField dateTextField;
+    TextField idTextField;
+    TextField placeTextField;
+
+    TextField courseCodeTextField;
+
+    TextField teacherTextField;
+
+    //-- ComboBoxes --
+    DatePicker startDatePicker;
+
+    DatePicker endDatePicker;
 
     //-- Labels --
-    Label dateLabel;
-    Label commentLabel;
+    Label idLabel;
+    Label placeLabel;
+
+    Label startDateLabel;
+
+    Label endDateLabel;
+
+    Label courseCodeLabel;
+
+    Label teacherLabel;
 
 
     //-- Table --
@@ -101,22 +114,37 @@ public class AppComponents extends App {
     //textFields setters and getters
 
     public void setTextfields() {
-        commentTextField = new TextField();
-        commentTextField.setPrefSize(400, 30);
+        idTextField = new TextField();
+        idTextField.setPrefSize(150, 30);
 
-        dateTextField = new TextField();
-        dateTextField.setPrefSize(100, 30);
-        dateTextField.setEditable(false);
+        placeTextField = new TextField();
+        placeTextField.setPrefSize(150, 30);
+
+        courseCodeTextField = new TextField();
+        courseCodeTextField.setPrefSize(150, 30);
+
+        teacherTextField = new TextField();
+        teacherTextField.setPrefSize(150, 30);
+    }
+
+    //Comboboxes setter
+    public void setDatePickers() {
+        startDatePicker = new DatePicker();
+        startDatePicker.setPrefSize(150, 30);
+
+
+        endDatePicker = new DatePicker();
+        endDatePicker.setPrefSize(150, 30);
     }
 
 
 
-    public TextField getCommentTextField() {
-        return commentTextField;
+    public TextField getIdTextField() {
+        return idTextField;
     }
 
-    public TextField getDateTextField() {
-        return dateTextField;
+    public TextField getPlaceTextField() {
+        return placeTextField;
     }
 
 
@@ -125,19 +153,37 @@ public class AppComponents extends App {
     //-- Labels setters and getters --
 
     public void setLabels() {
-        dateLabel = new Label();
-        dateLabel.setText("Date:");
+        idLabel = new Label();
+        idLabel.setText("ID:");
+        idLabel.setId("id-label");
 
-        commentLabel = new Label();
-        commentLabel.setText("Comment:");
+        placeLabel = new Label();
+        placeLabel.setText("Plats");
+        placeLabel.setId("place-label");
+
+        startDateLabel = new Label();
+        startDateLabel.setText("Datum from:");
+        startDateLabel.setId("start-date-label");
+
+        endDateLabel = new Label();
+        endDateLabel.setText("Tom:");
+        endDateLabel.setId("end-date-label");
+
+        courseCodeLabel = new Label();
+        courseCodeLabel.setText("Kurs-kod:");
+        courseCodeLabel.setId("course-code-label");
+
+        teacherLabel = new Label();
+        teacherLabel.setText("Lärare:");
+        teacherLabel.setId("teacher-label");
     }
 
-    public Label getDateLabel() {
-        return dateLabel;
+    public Label getIdLabel() {
+        return idLabel;
     }
 
-    public Label getCommentLabel() {
-        return commentLabel;
+    public Label getPlaceLabel() {
+        return placeLabel;
     }
 
 
@@ -209,6 +255,7 @@ public class AppComponents extends App {
         courseCodeColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent cellEditEvent) {
+                //-- Check for invalid inputs -- // vet inte riktigt hur denna ska fungera
                 Object oldVal = cellEditEvent.getOldValue();
                 ObservableList<CalendarEntry> list = courseCodeColumn.getTableView().getItems();
                 CalendarEntry data = (CalendarEntry) courseCodeColumn.getTableView().getSelectionModel().getSelectedItem();
@@ -329,5 +376,37 @@ public class AppComponents extends App {
 
     public void setTeacherColumn(TableColumn teacherColumn) {
         this.teacherColumn = teacherColumn;
+    }
+
+    public TextField getCourseCodeTextField() {
+        return courseCodeTextField;
+    }
+
+    public TextField getTeacherTextField() {
+        return teacherTextField;
+    }
+
+    public DatePicker getStartDatePicker() {
+        return startDatePicker;
+    }
+
+    public DatePicker getEndDatePicker() {
+        return endDatePicker;
+    }
+
+    public Label getStartDateLabel() {
+        return startDateLabel;
+    }
+
+    public Label getEndDateLabel() {
+        return endDateLabel;
+    }
+
+    public Label getCourseCodeLabel() {
+        return courseCodeLabel;
+    }
+
+    public Label getTeacherLabel() {
+        return teacherLabel;
     }
 }

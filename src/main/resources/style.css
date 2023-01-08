@@ -1,0 +1,48 @@
+.root{
+    -fx-effect: dropshadow(two-pass-box, black, 10,0.0,0,0);
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: black;
+
+}
+
+#header {
+    -fx-background-image: url("ltulogo.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1920 100;
+    -fx-background-position: center center;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: black;
+}
+
+#left-menu {
+    -fx-background-image: url("2560px-Luleå_tekniska_universitet_Logo.svg.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 200 1080;
+    -fx-background-position: center center;
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: black;
+}
+
+#id-label {
+    -fx-text-fill: white;
+}
+
+#start-date-label {
+    -fx-text-fill: white;
+}
+
+#end-date-label {
+    -fx-text-fill: white;
+}
+
+#teacher-label {
+    -fx-text-fill: white;
+}
+
+#place-label {
+    -fx-text-fill: white;
+}
+
+#course-code-label {
+    -fx-text-fill: white;
+}

@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -37,6 +38,7 @@ public class App extends Application {
         init.setTextfields();
         init.setButtons();
         init.setLabels();
+        init.setDatePickers();
         init.setColumns();
         init.setTable();
 
@@ -79,6 +81,13 @@ public class App extends Application {
             }
         });
 
+        init.getSetScheduleButton().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                //kolla ifall något fält i tabellen är tomt, låt ej lärare skicka in om något fält är tomt
+            }
+        });
+
 
 
 
@@ -86,19 +95,18 @@ public class App extends Application {
         //top - header
         HBox header = new HBox();
         header.setPrefSize(1920, 100);
-        header.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         header.setId("header");
 
         //top of root
-        HBox topRoot = new HBox();
-        topRoot.setPrefSize(1920, 40);
-        topRoot.setSpacing(30);
-        topRoot.setAlignment(Pos.CENTER_RIGHT);
-        topRoot.getChildren().add(init.getDateLabel());
-        topRoot.getChildren().add(init.getDateTextField());
-        topRoot.getChildren().add(init.getCommentLabel());
-        topRoot.getChildren().add(init.getCommentTextField());
-        topRoot.getChildren().add(init.getSetScheduleButton());
+        HBox bottomRoot = new HBox();
+        bottomRoot.setPrefSize(1920, 40);
+        bottomRoot.setSpacing(30);
+        bottomRoot.setAlignment(Pos.CENTER_RIGHT);
+        //bottomRoot.getChildren().add(init.getDateLabel());
+        //bottomRoot.getChildren().add(init.getDateTextField());
+        //bottomRoot.getChildren().add(init.getCommentLabel());
+        //bottomRoot.getChildren().add(init.getCommentTextField());
+        bottomRoot.getChildren().add(init.getSetScheduleButton());
 
 
         VBox rootCenter = new VBox();
@@ -114,7 +122,14 @@ public class App extends Application {
         rootSchedule.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         //rootSchedule.setCenter(new Calendar(YearMonth.now()).getView());
         rootSchedule.setCenter(rootCenter);
-        rootSchedule.setBottom(topRoot);
+        rootSchedule.setBottom(bottomRoot);
+
+        //Vbox for getSchedule button
+        VBox getScheduleVbox = new VBox();
+        getScheduleVbox.setPrefSize(200, 100);
+        getScheduleVbox.setAlignment(Pos.BOTTOM_RIGHT);
+        getScheduleVbox.setSpacing(15);
+        getScheduleVbox.getChildren().add(init.getGetScheduleButton());
 
 
 
@@ -122,18 +137,17 @@ public class App extends Application {
         VBox leftMenu = new VBox();
         leftMenu.setPrefSize(200, 830);
         leftMenu.setMaxSize(200, 1080);
-        leftMenu.setAlignment(Pos.CENTER);
-        leftMenu.setSpacing(10);
-        leftMenu.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        leftMenu.setAlignment(Pos.TOP_LEFT);
+        leftMenu.setSpacing(5);
+        leftMenu.setPadding(new Insets(10, 10, 10, 10));
         leftMenu.setId("left-menu");
         // -- add buttons etc --
-        leftMenu.getChildren().add(init.getGetScheduleButton());
+        leftMenu.getChildren().addAll(init.getIdLabel(), init.getIdTextField(), init.getStartDateLabel(), init.getStartDatePicker()
+                , init.getEndDateLabel(), init.getEndDatePicker(), init.getPlaceLabel(), init.getPlaceTextField(), init.getCourseCodeLabel(),
+                init.getCourseCodeTextField(), init.getTeacherLabel(), init.getTeacherTextField(), getScheduleVbox);
 
         //bottom - footer
-        HBox footer = new HBox();
-        footer.setPrefSize(1920, 100);
-        footer.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-        footer.setId("footer");
+
 
 
 
@@ -150,12 +164,13 @@ public class App extends Application {
         mainStage.setLeft(leftMenu);
         mainStage.setTop(header);
         mainStage.setCenter(rootSchedule);
-        mainStage.setBottom(footer);
+
 
         mainStage.setId("main-stage");
 
         //-- SET SCENE --
         Scene scene = new Scene(mainStage, 1280, 830);
+        scene.getStylesheets().add("style.css");
         primaryStage.setScene(scene);
         primaryStage.setMaxHeight(1080);
         primaryStage.setMaxWidth(1920);
