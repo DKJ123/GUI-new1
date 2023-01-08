@@ -57,25 +57,25 @@ public class App extends Application {
         init.getGetScheduleButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String getCanvasRes = null;
-                String postCanvasRes = null;
+                //String getCanvasRes = null;
+                //String postCanvasRes = null;
                 String getTimeEditRes = null; //Ska populeras in i tabellen vid. getCanvas/postCanvas lämnas kvar som "dokumentation" på hur de används.
 
                 try {
-                    getCanvasRes = webhookManager.getCanvas(userIDBjorn, startDate, endDate);
-                    postCanvasRes = webhookManager.postCanvas(canvasTestCreateEventString);
+                    //getCanvasRes = webhookManager.getCanvas(userIDBjorn, startDate, endDate);
+                    //postCanvasRes = webhookManager.postCanvas(canvasTestCreateEventString);
                     getTimeEditRes = webhookManager.getTimeEdit("");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println(getCanvasRes);
-                System.out.println();
-                System.out.println(postCanvasRes);
-                System.out.println();
-                System.out.println(getTimeEditRes);
-                System.out.println();
-                System.out.println(webhookManager.jsonToCalendarEntryList(getTimeEditRes));
-                System.out.println();
+                //System.out.println(getCanvasRes);
+                //System.out.println();
+                //System.out.println(postCanvasRes);
+                //System.out.println();
+                //System.out.println(getTimeEditRes);
+                //System.out.println();
+                //System.out.println(webhookManager.jsonToCalendarEntryList(getTimeEditRes));
+                //System.out.println();
 
                 ObservableList<CalendarEntry> data = webhookManager.jsonToCalendarEntryList(getTimeEditRes);
                 init.getTable().setItems(data);
@@ -86,16 +86,28 @@ public class App extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 //kolla ifall något fält i tabellen är tomt, låt ej lärare skicka in om något fält är tomt
-                System.out.println("SetSchedule");
+                //System.out.println("SetSchedule");
                 ObservableList<CalendarEntry> schedule = init.getTable().getItems();
                 for (CalendarEntry ce : schedule) {
-                    System.out.println(ce.toString());
-                    System.out.println();
+                    //System.out.println(ce.toString());
+                    //System.out.println();
                     try {
                         System.out.println(ce.toJson().toString());
+                        //webhookManager.postCanvas((ce.toJson().toString()));
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
+                }
+                try {
+                    //System.out.println(1);
+                    //webhookManager.postCanvas(schedule.get(0).toJson().toString());
+                    //System.out.println(2);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });
@@ -144,7 +156,6 @@ public class App extends Application {
         getScheduleVbox.getChildren().add(init.getGetScheduleButton());
 
 
-
         //Left menu
         VBox leftMenu = new VBox();
         leftMenu.setPrefSize(200, 830);
@@ -159,13 +170,6 @@ public class App extends Application {
                 init.getCourseCodeTextField(), init.getTeacherLabel(), init.getTeacherTextField(), getScheduleVbox);
 
         //bottom - footer
-
-
-
-
-
-
-
 
 
         //main

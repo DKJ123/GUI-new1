@@ -41,6 +41,7 @@ public class WebhookManager {
     }
 
     public String postCanvas(String content) throws IOException {
+        System.out.println(content);
         requestType = "POST";
         body = content;
         url = canvasUrl + "calendar_events";

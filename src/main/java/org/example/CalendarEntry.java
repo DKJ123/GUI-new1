@@ -71,22 +71,18 @@ public class CalendarEntry {
     public JSONObject toJson() throws JSONException {
         JSONObject jsonFull = new JSONObject();
         JSONObject json = new JSONObject();
-        json.append("title", title);
-        json.append("ID", id);
-        json.append("StartDate", startDate);
-        json.append("EndDate", endDate);
-        json.append("StartTime", startTime);
-        json.append("EndTime", endTime);
-        json.append("Location", location);
-        json.append("CourseCode", courseCode);
-        json.append("ActivityType", activityType);
-        json.append("Teacher", teacher);
-        json.append("description", description + " " + zoomLink);
-        json.append("activityContent", activityContent);
-        json.append("title", title);
-        json.append("context_code", "user_98107");
+        json.put("title", "test");
+        //json.put("id", id);
+        json.put("start_at", startDate + "T" + startTime + ":00Z");
+        json.put("end_at", endDate + "T" + endTime + ":00Z");
+        json.put("location_name", location);
+        //json.put("CourseCode", courseCode);
+        //json.put("Teacher", teacher);
+        json.put("description", activityType + ", " + description + ", " + teacher + ", " + zoomLink);
+        //json.put("title", title);
+        json.put("context_code", "user_98107");
 
-        jsonFull.append("calendar_event",json);
+        jsonFull.put("calendar_event",json);
 
         return jsonFull;
     }
