@@ -17,6 +17,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONException;
 
@@ -46,13 +48,6 @@ public class App extends Application {
 
         //-- Webhook manager --
         WebhookManager webhookManager = new WebhookManager();
-
-        //-- testsaker för backend --
-        String canvasTestCreateEventString = "{\"calendar_event\": {\"context_code\":\"user_98107\",\"title\":\"api test\",\"start_at\":\"2022-12-18T10:15:00Z\",\"end_at\":\"2022-12-18T11:45:00Z\"}}";
-        String userIDBjorn = "98107";
-        String startDate = "2022-11-16T16:00:00Z";
-        String endDate = "2023-01-16T16:00:00Z";
-
 
         init.getGetScheduleButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -96,14 +91,17 @@ public class App extends Application {
                         //webhookManager.postCanvas((ce.toJson().toString()));
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
                     }
                 }
                 try {
-                    //System.out.println(1);
-                    //webhookManager.postCanvas(schedule.get(0).toJson().toString());
-                    //System.out.println(2);
+                    webhookManager.postCanvas(schedule.get(0).toJson().toString());
+                    Stage dialog = new Stage();
+                    dialog.initModality(Modality.APPLICATION_MODAL);
+                    VBox dialogBox = new VBox(20);
+                    dialogBox.getChildren().add(new Text("Schema skapat i canvas"));
+                    Scene dialogScene = new Scene(dialogBox, 300, 200);
+                    dialog.setScene(dialogScene);
+                    dialog.show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 } catch (JSONException e) {
