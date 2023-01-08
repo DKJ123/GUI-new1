@@ -52,16 +52,43 @@ public class CalendarEntry {
     }
 
 
-    public void printObject() {
-        System.out.println("ID = " + id);
-        System.out.println("StartDate = " + startDate);
-        System.out.println("EndDate = " + endDate);
-        System.out.println("StartTime = " + startTime);
-        System.out.println("EndTime = " + endTime);
-        System.out.println("Location = " + location);
-        System.out.println("CourseCode = " + courseCode);
-        System.out.println("ActivityType = " + activityType);
-        System.out.println("Teacher = " + teacher);
+    public String toString() {
+        return  "ID = " + id +
+                "\nStartDate = " + startDate +
+                "\nEndDate = " + endDate +
+                "\nStartTime = " + startTime +
+                "\nEndTime = " + endTime +
+                "\nLocation = " + location +
+                "\nCourseCode = " + courseCode +
+                "\nActivityType = " + activityType +
+                "\nTeacher = " + teacher +
+                "\nzoomLink = " + zoomLink +
+                "\nactivityContent = " + activityContent +
+                "\ntitle = " + title +
+                "\ndescription = " + description;
+    }
+
+    public JSONObject toJson() throws JSONException {
+        JSONObject jsonFull = new JSONObject();
+        JSONObject json = new JSONObject();
+        json.append("title", title);
+        json.append("ID", id);
+        json.append("StartDate", startDate);
+        json.append("EndDate", endDate);
+        json.append("StartTime", startTime);
+        json.append("EndTime", endTime);
+        json.append("Location", location);
+        json.append("CourseCode", courseCode);
+        json.append("ActivityType", activityType);
+        json.append("Teacher", teacher);
+        json.append("description", description + " " + zoomLink);
+        json.append("activityContent", activityContent);
+        json.append("title", title);
+        json.append("context_code", "user_98107");
+
+        jsonFull.append("calendar_event",json);
+
+        return jsonFull;
     }
 
 

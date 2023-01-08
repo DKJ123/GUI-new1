@@ -168,7 +168,7 @@ public class WebhookManager {
             for(int i=0; i <reservations.length(); i++) {
                 System.out.println(reservations.get(i));
                 CalendarEntry calendarEntry = new CalendarEntry((JSONObject)reservations.get(i));
-                calendarEntry.printObject();
+                System.out.println(calendarEntry.toString());
                 calendarEntries.add(calendarEntry);
                 System.out.println();
                 System.out.println();

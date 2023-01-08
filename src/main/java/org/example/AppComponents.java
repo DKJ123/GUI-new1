@@ -1,5 +1,7 @@
 package org.example;
 
+import Schedule.Calendar;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -209,6 +211,7 @@ public class AppComponents extends App {
         IdColumn.setEditable(true);
         IdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         IdColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("id"));
+        ((TableColumn<CalendarEntry, String>) IdColumn).setOnEditCommit(evt -> evt.getRowValue().setId(evt.getNewValue()));
 
         //-- startDateColumn --
         startDateColumn = new TableColumn("Start-datum");
@@ -216,6 +219,7 @@ public class AppComponents extends App {
         startDateColumn.setEditable(true);
         startDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         startDateColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("startDate"));
+        ((TableColumn<CalendarEntry, String>) startDateColumn).setOnEditCommit(evt -> evt.getRowValue().setStartDate(evt.getNewValue()));
 
         //-- endDateColumn --
         endDateColumn = new TableColumn("Slut-datum");
@@ -223,6 +227,7 @@ public class AppComponents extends App {
         endDateColumn.setEditable(true);
         endDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         endDateColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("endDate"));
+        ((TableColumn<CalendarEntry, String>) endDateColumn).setOnEditCommit(evt -> evt.getRowValue().setEndDate(evt.getNewValue()));
 
         //-- startTimeColumn --
         startTimeColumn = new TableColumn("Start-tid");
@@ -230,6 +235,7 @@ public class AppComponents extends App {
         startTimeColumn.setEditable(true);
         startTimeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         startTimeColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("startTime"));
+        ((TableColumn<CalendarEntry, String>) startTimeColumn).setOnEditCommit(evt -> evt.getRowValue().setStartTime(evt.getNewValue()));
 
         //-- endTimeColumn --
         endTimeColumn = new TableColumn("Slut-tid");
@@ -237,6 +243,7 @@ public class AppComponents extends App {
         endTimeColumn.setEditable(true);
         endTimeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("endTime"));
+        ((TableColumn<CalendarEntry, String>) endTimeColumn).setOnEditCommit(evt -> evt.getRowValue().setEndTime(evt.getNewValue()));
 
         //-- locationColumn --
         locationColumn = new TableColumn("Plats");
@@ -244,7 +251,7 @@ public class AppComponents extends App {
         locationColumn.setEditable(true);
         locationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         locationColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("location"));
-
+        ((TableColumn<CalendarEntry, String>) locationColumn).setOnEditCommit(evt -> evt.getRowValue().setLocation(evt.getNewValue()));
 
         // -- courseCodeColumn --
         courseCodeColumn = new TableColumn("Kurs-kod");
@@ -252,6 +259,7 @@ public class AppComponents extends App {
         courseCodeColumn.setEditable(true);
         courseCodeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         courseCodeColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("courseCode"));
+        ((TableColumn<CalendarEntry, String>) courseCodeColumn).setOnEditCommit(evt -> evt.getRowValue().setCourseCode(evt.getNewValue()));
         courseCodeColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent cellEditEvent) {
@@ -288,6 +296,7 @@ public class AppComponents extends App {
         activityColumn.setEditable(true);
         activityColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         activityColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("activityType"));
+        ((TableColumn<CalendarEntry, String>) activityColumn).setOnEditCommit(evt -> evt.getRowValue().setActivityType(evt.getNewValue()));
 
         //-- teacherColumn --
         teacherColumn = new TableColumn("Lärare");
@@ -295,13 +304,15 @@ public class AppComponents extends App {
         teacherColumn.setEditable(true);
         teacherColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         teacherColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("teacher"));
-
+        ((TableColumn<CalendarEntry, String>) teacherColumn).setOnEditCommit(evt -> evt.getRowValue().setTeacher(evt.getNewValue()));
 
         commentColumn = new TableColumn("Kommentar");
         commentColumn.setPrefWidth(700);
         commentColumn.setEditable(true);
         commentColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         commentColumn.setCellValueFactory(new PropertyValueFactory<CalendarEntry, String>("description"));
+        ((TableColumn<CalendarEntry, String>) commentColumn).setOnEditCommit(evt -> evt.getRowValue().setDescription(evt.getNewValue()));
+
     }
 
 

@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -85,6 +86,17 @@ public class App extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 //kolla ifall något fält i tabellen är tomt, låt ej lärare skicka in om något fält är tomt
+                System.out.println("SetSchedule");
+                ObservableList<CalendarEntry> schedule = init.getTable().getItems();
+                for (CalendarEntry ce : schedule) {
+                    System.out.println(ce.toString());
+                    System.out.println();
+                    try {
+                        System.out.println(ce.toJson().toString());
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         });
 
