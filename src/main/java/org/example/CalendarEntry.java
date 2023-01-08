@@ -80,7 +80,7 @@ public class CalendarEntry {
         //json.put("Teacher", teacher);
         json.put("description", activityType + ", " + description + ", " + teacher + ", " + zoomLink);
         //json.put("title", title);
-        json.put("context_code", "user_98107");
+        json.put("context_code", "user_64978");
 
         jsonFull.put("calendar_event",json);
 

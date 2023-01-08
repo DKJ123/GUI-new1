@@ -24,6 +24,7 @@ public class WebhookManager {
     String lastResponse;
 
     String canvasUrl = "https://ltu.instructure.com/api/v1/";
+    //String canvasToken = "3755~buPUF77WBixkcXA6X5yfMnnCGOiPwOtPQW4a8Vw2i96ihLZoaWy23wIEZsTXhrL7";
     String canvasToken = "3755~buPUF77WBixkcXA6X5yfMnnCGOiPwOtPQW4a8Vw2i96ihLZoaWy23wIEZsTXhrL7";
 
     String testUrl = "https://webhook.site/55fe39a4-02dc-4cb0-801d-a156ab01b970";
